@@ -7,10 +7,11 @@ use Clipboard;
 use Test;
 
 ## 1
-ok copy-to-clipboard("3433");
+my $s1 = "3433";
+is-deeply copy-to-clipboard($s1), $s1;
 
 ## 2
 my %h2 = g => 3, b => 565;
-ok copy-to-clipboard(%h2);
+is-deeply copy-to-clipboard(%h2), %h2;
 
 done-testing;
