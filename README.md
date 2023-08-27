@@ -2,6 +2,8 @@
 
 Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)
 
+**Remark:** The package is (extensively) tested and used on macOS. 
+At this point it is not tested on other OS. (Issues and pull requests are welcome!)
 
 ------
 
@@ -65,41 +67,67 @@ my $chat = llm-chat($promptCodeWriter);
 Here we generate code through the chat object and get the result copied in the clipboard:
 
 ```perl6
-$chat.eval('Give code for making a dictionary the keys of which have two elements.') ==> copy-to-clipboard
+$chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 ```
-# my %dictionary;
-# %dictionary<key1, value1> = 42;
-# %dictionary<key2, value2> = "hello";
-# %dictionary<key3, value3> = [1, 2, 3];
-# say %dictionary.perl;
+# my %dictionary = (
+#   'apple' => 'a fruit',
+#   'car' => 'a vehicle',
+#   'cat' => 'a mammal',
+#   'sun' => 'a star',
+#   'book' => 'a written work'
+# );
+# 
+# .say for %dictionary.pairs;
 ```
 
 Here we get clipboard's content:
 
 ```perl6
-from-clipboard
+paste
 ```
 ```
-# my %dictionary;
-# %dictionary<key1, value1> = 42;
-# %dictionary<key2, value2> = "hello";
-# %dictionary<key3, value3> = [1, 2, 3];
-# say %dictionary.perl;
+# my %dictionary = (
+#   'apple' => 'a fruit',
+#   'car' => 'a vehicle',
+#   'cat' => 'a mammal',
+#   'sun' => 'a star',
+#   'book' => 'a written work'
+# );
+# 
+# .say for %dictionary.pairs;
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
 
 ```perl6
 use MONKEY-SEE-NO-EVAL;
-EVAL from-clipboard;
+EVAL paste;
 ```
 ```
-# {"key1," => 42, "key2," => "hello", "key3," => 1, :value1(Any), :value2(Any), :value3(2)}
+# car => a vehicle
+# cat => a mammal
+# sun => a star
+# apple => a fruit
+# book => a written work
 ```
 
+---------
 
+## Synonyms
 
+Here are the synonyms of the clipboard subs:
+
+```perl6
+use Clipboard :DEFAULT;      # copy-to-clipboard, paste
+use Clipboard :cb-prefixed;  # cbcopy, cbpaste
+use Clipboard :long-names;   # copy-to-clipboard, paste-from-clipboard
+use Clipboard :ALL;          # copy-to-clipboard, paste, cbcopy, cbpaste, paste-from-clipboard
+```
+```
+# (Any)
+```
+ 
 ---------
 
 ## Implementation notes
