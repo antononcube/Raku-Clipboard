@@ -91,7 +91,7 @@ Here are the synonyms of the clipboard subs:
 use Clipboard :DEFAULT;      # copy-to-clipboard, paste
 use Clipboard :cb-prefixed;  # cbcopy, cbpaste
 use Clipboard :long-names;   # copy-to-clipboard, paste-from-clipboard
-use Clipboard :ALL;          # copy-to-clipboard, paste, cbcopy, cbpaste, paste-from-clipboard
+use Clipboard :ALL;          # copy-to-clipboard, paste-from-clipboard, cbcopy, cbpaste, paste
 ```
  
 ---------
