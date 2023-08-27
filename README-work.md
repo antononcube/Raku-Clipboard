@@ -32,7 +32,7 @@ use Clipboard;
 use LLM::Functions;
 ```
 
-Here is an LLM prompt for code writing assistance:
+Here is an LLM prompt for code writing assistance (Raku-modified version of [this one](https://resources.wolframcloud.com/PromptRepository/resources/CodeWriter/)):
 
 ```perl6
 my $promptCodeWriter = q:to/END/;
@@ -96,6 +96,8 @@ Command Line Interface (CLI) scripts of the [DSL family of packages](https://rak
 (for computational workflows.)
 
 ---------
+
+## References
 
 [AAp1] Anton Antonov,
 [LLM::Functions](https://github.com/antononcube/Raku-LLM-Functions),

@@ -35,7 +35,7 @@ use LLM::Functions;
 # (Any)
 ```
 
-Here is an LLM prompt for code writing assistance:
+Here is an LLM prompt for code writing assistance (Raku-modified version of [this one](https://resources.wolframcloud.com/PromptRepository/resources/CodeWriter/)):
 
 ```perl6
 my $promptCodeWriter = q:to/END/;
@@ -71,14 +71,14 @@ $chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 ```
 # my %dictionary = (
-#   'apple' => 'a fruit',
-#   'car' => 'a vehicle',
-#   'cat' => 'a mammal',
-#   'sun' => 'a star',
-#   'book' => 'a written work'
+#   'apple' => 'a type of fruit',
+#   'car' => 'a vehicle with four wheels',
+#   'house' => 'a place where people live',
+#   'dog' => 'a domesticated animal',
+#   'tree' => 'a tall plant with a trunk and branches'
 # );
 # 
-# .say for %dictionary.pairs;
+# say %dictionary;
 ```
 
 Here we get clipboard's content:
@@ -88,14 +88,14 @@ paste
 ```
 ```
 # my %dictionary = (
-#   'apple' => 'a fruit',
-#   'car' => 'a vehicle',
-#   'cat' => 'a mammal',
-#   'sun' => 'a star',
-#   'book' => 'a written work'
+#   'apple' => 'a type of fruit',
+#   'car' => 'a vehicle with four wheels',
+#   'house' => 'a place where people live',
+#   'dog' => 'a domesticated animal',
+#   'tree' => 'a tall plant with a trunk and branches'
 # );
 # 
-# .say for %dictionary.pairs;
+# say %dictionary;
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
@@ -105,11 +105,7 @@ use MONKEY-SEE-NO-EVAL;
 EVAL paste;
 ```
 ```
-# car => a vehicle
-# cat => a mammal
-# sun => a star
-# apple => a fruit
-# book => a written work
+# {apple => a type of fruit, car => a vehicle with four wheels, dog => a domesticated animal, house => a place where people live, tree => a tall plant with a trunk and branches}
 ```
 
 ---------
@@ -137,6 +133,8 @@ Command Line Interface (CLI) scripts of the [DSL family of packages](https://rak
 (for computational workflows.)
 
 ---------
+
+## References
 
 [AAp1] Anton Antonov,
 [LLM::Functions](https://github.com/antononcube/Raku-LLM-Functions),
