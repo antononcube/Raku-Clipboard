@@ -35,7 +35,7 @@ multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbcopy" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip -selection clipboard"
+                            "xclip -sel clip"
                         }
                     }
         }
@@ -57,7 +57,7 @@ multi sub copy-to-clipboard(Bool :$usage-message = True -->Str) {
             2. If the variable CLIPBOARD_COPY_COMMAND is not defined then:
                 - 'pbcopy' is used on macOS
                 - 'clip.exe' on Windows
-                - 'xclip -selection clipboard' on Linux.
+                - 'xclip -sel clip' on Linux.
     EOH
 
     if $usage-message {
