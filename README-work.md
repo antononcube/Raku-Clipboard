@@ -68,6 +68,12 @@ Here we generate code through the chat object and get the result copied in the c
 $chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 
+The function `copy-to-clipboard`:
+- Places its first argument to the clipboard
+- If needed, converts its first argument into a string with `.raku`
+- Returns its first argument
+- Can produce CLI usage message fragment (see below)
+
 Here we get clipboard's content:
 
 ```perl6
@@ -85,7 +91,7 @@ EVAL paste;
 
 ## Synonyms
 
-Here are the synonyms of the clipboard subs:
+Here are the synonyms of the primary, default clipboard subs `copy-to-clipboard` and `paste`:
 
 ```perl6
 use Clipboard :DEFAULT;      # copy-to-clipboard, paste

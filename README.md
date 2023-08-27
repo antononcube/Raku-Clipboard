@@ -78,14 +78,20 @@ $chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 ```
 # my %dictionary = (
-#     "apple"  => "a fruit",
-#     "car"    => "a vehicle",
-#     "house"  => "a place to live",
-#     "cat"    => "a furry animal",
-#     "computer" => "a device used for computing"
+#     word1 => 'definition1',
+#     word2 => 'definition2',
+#     word3 => 'definition3',
+#     word4 => 'definition4',
+#     word5 => 'definition5',
 # );
-# say %dictionary.pick(5);
+# say %dictionary.pick(*).kv;
 ```
+
+The function `copy-to-clipboard`:
+- Places its first argument to the clipboard
+- If needed, converts its first argument into a string with `.raku`
+- Returns its first argument
+- Can produce CLI usage message fragment (see below)
 
 Here we get clipboard's content:
 
@@ -94,13 +100,13 @@ paste
 ```
 ```
 # my %dictionary = (
-#     "apple"  => "a fruit",
-#     "car"    => "a vehicle",
-#     "house"  => "a place to live",
-#     "cat"    => "a furry animal",
-#     "computer" => "a device used for computing"
+#     word1 => 'definition1',
+#     word2 => 'definition2',
+#     word3 => 'definition3',
+#     word4 => 'definition4',
+#     word5 => 'definition5',
 # );
-# say %dictionary.pick(5);
+# say %dictionary.pick(*).kv;
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
@@ -110,14 +116,14 @@ use MONKEY-SEE-NO-EVAL;
 EVAL paste;
 ```
 ```
-# (car => a vehicle computer => a device used for computing apple => a fruit cat => a furry animal house => a place to live)
+# (0 word1 => definition1 1 word2 => definition2 2 word3 => definition3 3 word4 => definition4 4 word5 => definition5)
 ```
 
 ---------
 
 ## Synonyms
 
-Here are the synonyms of the clipboard subs:
+Here are the synonyms of the primary, default clipboard subs `copy-to-clipboard` and `paste`:
 
 ```perl6
 use Clipboard :DEFAULT;      # copy-to-clipboard, paste
