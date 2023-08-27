@@ -3,7 +3,7 @@ use v6.d;
 use lib '.';
 use lib './lib';
 
-use Clipboard :ALL;
+use Clipboard :cb-prefixed;
 use Test;
 
 ## 1
