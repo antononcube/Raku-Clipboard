@@ -42,6 +42,7 @@ multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
     }
 
     if $clipboard-command.chars > 0 {
+        $payload2 .= subst("'", '\x27'):g;
         shell "echo '$payload2' | $clipboard-command";
     }
     return $payload;
@@ -67,12 +68,12 @@ multi sub copy-to-clipboard(Bool :$usage-message = True -->Str) {
 }
 
 #===========================================================
-# From
+# Paste
 #===========================================================
 
-proto from-clipboard(|) is export {*}
+proto paste(|) is export {*}
 
-multi sub from-clipboard(:$clipboard-command is copy = Whatever) {
+multi sub paste(:$clipboard-command is copy = Whatever) {
 
     if $clipboard-command.isa(Whatever) || $clipboard-command ~~ Str && $clipboard-command eq 'Whatever' {
         if %*ENV<CLIPBOARD_PASTE_COMMAND>:exists {
@@ -98,3 +99,16 @@ multi sub from-clipboard(:$clipboard-command is copy = Whatever) {
     }
     return Nil;
 }
+
+#===========================================================
+# Paste
+#===========================================================
+
+#| Synonym of copy-to-clipboard
+constant &cbcopy is export(:ALL) = &copy-to-clipboard;
+
+#| Synonym to paste
+constant &cbpaste is export(:ALL) = &paste;
+
+#| Synonym to paste
+constant &paste-from-clipboard is export(:ALL) = &paste;
