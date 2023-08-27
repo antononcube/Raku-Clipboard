@@ -35,7 +35,7 @@ multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbcopy" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip -sel clip"
+                            "xclip"
                         }
                     }
         }
@@ -85,7 +85,7 @@ multi sub paste(:$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbpaste" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip -selection clipboard"
+                            "xclip -o"
                         }
                     }
         }
