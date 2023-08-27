@@ -2,7 +2,14 @@
 
 Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)
 
-**Remark:** The package is (extensively) tested and used on macOS. 
+The OS commands used to do the copy and paste to- and from the clipboard can be specified with the 
+environment variables:
+- `CLIPBOARD_COPY_COMMAND`
+- `CLIPBOARD_PASTE_COMMAND`
+
+If these env-variables are not specified, then default OS commands are used based on `$*DISTRO`.
+
+**Remark:** The package is (extensively) tested and used on macOS.
 At this point it is not tested on other OS. (Issues and pull requests are welcome!)
 
 ------
@@ -58,10 +65,10 @@ $promptCodeWriter.chars
 Here we make a chat object with the code writing prompt:
 
 ```perl6
-my $chat = llm-chat($promptCodeWriter);
+my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter');
 ```
 ```
-# LLM::Functions::Chat(chat-id = , llm-evaluator.conf.name = chatgpt, messages.elems = 0)
+# LLM::Functions::Chat(chat-id = RakuWriter, llm-evaluator.conf.name = chatgpt, messages.elems = 0)
 ```
 
 Here we generate code through the chat object and get the result copied in the clipboard:
@@ -71,14 +78,13 @@ $chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 ```
 # my %dictionary = (
-#   'apple' => 'a type of fruit',
-#   'car' => 'a vehicle with four wheels',
-#   'house' => 'a place where people live',
-#   'dog' => 'a domesticated animal',
-#   'tree' => 'a tall plant with a trunk and branches'
+#     "apple"  => "a fruit",
+#     "car"    => "a vehicle",
+#     "house"  => "a place to live",
+#     "cat"    => "a furry animal",
+#     "computer" => "a device used for computing"
 # );
-# 
-# say %dictionary;
+# say %dictionary.pick(5);
 ```
 
 Here we get clipboard's content:
@@ -88,14 +94,13 @@ paste
 ```
 ```
 # my %dictionary = (
-#   'apple' => 'a type of fruit',
-#   'car' => 'a vehicle with four wheels',
-#   'house' => 'a place where people live',
-#   'dog' => 'a domesticated animal',
-#   'tree' => 'a tall plant with a trunk and branches'
+#     "apple"  => "a fruit",
+#     "car"    => "a vehicle",
+#     "house"  => "a place to live",
+#     "cat"    => "a furry animal",
+#     "computer" => "a device used for computing"
 # );
-# 
-# say %dictionary;
+# say %dictionary.pick(5);
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
@@ -105,7 +110,7 @@ use MONKEY-SEE-NO-EVAL;
 EVAL paste;
 ```
 ```
-# {apple => a type of fruit, car => a vehicle with four wheels, dog => a domesticated animal, house => a place where people live, tree => a tall plant with a trunk and branches}
+# (car => a vehicle computer => a device used for computing apple => a fruit cat => a furry animal house => a place to live)
 ```
 
 ---------
@@ -131,6 +136,23 @@ use Clipboard :ALL;          # copy-to-clipboard, paste, cbcopy, cbpaste, paste-
 The first version of this code was implemented in the package "DSL::Shared", [AAp2], and used in the 
 Command Line Interface (CLI) scripts of the [DSL family of packages](https://raku.land/?q=DSL%3A%3AEnglish%3A%3A)
 (for computational workflows.)
+
+CLI scripts that want to utilize `copy-to-clipboard` can complete their from usage messages
+with the named argument `:$usage-message`:
+
+```perl6
+say copy-to-clipboard(:usage-message);
+```
+```
+# If --clipboard-command is the empty string then no copying to the clipboard is done.
+#     If --clipboard-command is 'Whatever' then:
+#         1. It is attempted to use the environment variable CLIPBOARD_COPY_COMMAND.
+#             If CLIPBOARD_COPY_COMMAND is defined and it is the empty string then no copying to the clipboard is done.
+#         2. If the variable CLIPBOARD_COPY_COMMAND is not defined then:
+#             - 'pbcopy' is used on macOS
+#             - 'clip.exe' on Windows
+#             - 'xclip -sel clip' on Linux.
+```
 
 ---------
 

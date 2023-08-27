@@ -2,7 +2,14 @@
 
 Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)
 
-**Remark:** The package is (extensively) tested and used on macOS. 
+The OS commands used to do the copy and paste to- and from the clipboard can be specified with the 
+environment variables:
+- `CLIPBOARD_COPY_COMMAND`
+- `CLIPBOARD_PASTE_COMMAND`
+
+If these env-variables are not specified, then default OS commands are used based on `$*DISTRO`.
+
+**Remark:** The package is (extensively) tested and used on macOS.
 At this point it is not tested on other OS. (Issues and pull requests are welcome!)
 
 ------
@@ -52,7 +59,7 @@ $promptCodeWriter.chars
 Here we make a chat object with the code writing prompt:
 
 ```perl6
-my $chat = llm-chat($promptCodeWriter);
+my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter');
 ```
 
 Here we generate code through the chat object and get the result copied in the clipboard:
@@ -94,6 +101,13 @@ use Clipboard :ALL;          # copy-to-clipboard, paste, cbcopy, cbpaste, paste-
 The first version of this code was implemented in the package "DSL::Shared", [AAp2], and used in the 
 Command Line Interface (CLI) scripts of the [DSL family of packages](https://raku.land/?q=DSL%3A%3AEnglish%3A%3A)
 (for computational workflows.)
+
+CLI scripts that want to utilize `copy-to-clipboard` can complete their from usage messages
+with the named argument `:$usage-message`:
+
+```perl6
+say copy-to-clipboard(:usage-message);
+```
 
 ---------
 
