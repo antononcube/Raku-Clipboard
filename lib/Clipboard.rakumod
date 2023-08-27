@@ -16,7 +16,7 @@ unit module Clipboard;
 #|   - 'pbcopy' is used on macOS
 #|   - 'clip.exe' on Windows
 #|   - 'xclip -selection clipboard' on Linux.
-proto copy-to-clipboard(|) is export {*}
+proto copy-to-clipboard(|) is export(:DEFAULT, :ALL, :long-names) {*}
 
 multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
 
@@ -71,7 +71,7 @@ multi sub copy-to-clipboard(Bool :$usage-message = True -->Str) {
 # Paste
 #===========================================================
 
-proto paste(|) is export {*}
+proto paste(|) is export(:DEFAULT, :ALL) {*}
 
 multi sub paste(:$clipboard-command is copy = Whatever) {
 
@@ -105,10 +105,10 @@ multi sub paste(:$clipboard-command is copy = Whatever) {
 #===========================================================
 
 #| Synonym of copy-to-clipboard
-constant &cbcopy is export(:ALL) = &copy-to-clipboard;
+constant &cbcopy is export(:ALL, :cb-prefixed) = &copy-to-clipboard;
 
 #| Synonym to paste
-constant &cbpaste is export(:ALL) = &paste;
+constant &cbpaste is export(:ALL, :cb-prefixed) = &paste;
 
 #| Synonym to paste
-constant &paste-from-clipboard is export(:ALL) = &paste;
+constant &paste-from-clipboard is export(:ALL, :long-names) = &paste;
