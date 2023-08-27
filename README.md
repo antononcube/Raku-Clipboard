@@ -7,7 +7,7 @@ environment variables:
 - `CLIPBOARD_COPY_COMMAND`
 - `CLIPBOARD_PASTE_COMMAND`
 
-If these env-variables are not specified, then default OS commands are used based on `$*DISTRO`.
+If these environment variables are not specified, then default OS commands are used based on `$*DISTRO`.
 
 **Remark:** The package is (extensively) tested and used on macOS.
 At this point it is not tested on other OS. (Issues and pull requests are welcome!)
@@ -78,13 +78,13 @@ $chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
 ```
 ```
 # my %dictionary = (
-#     word1 => 'definition1',
-#     word2 => 'definition2',
-#     word3 => 'definition3',
-#     word4 => 'definition4',
-#     word5 => 'definition5',
+#   "apple" => "a fruit",
+#   "banana" => "a fruit",
+#   "carrot" => "a vegetable",
+#   "dog" => "an animal",
+#   "elephant" => "an animal"
 # );
-# say %dictionary.pick(*).kv;
+# say %dictionary.pick(*)».kv;
 ```
 
 The function `copy-to-clipboard`:
@@ -100,13 +100,13 @@ paste
 ```
 ```
 # my %dictionary = (
-#     word1 => 'definition1',
-#     word2 => 'definition2',
-#     word3 => 'definition3',
-#     word4 => 'definition4',
-#     word5 => 'definition5',
+#   "apple" => "a fruit",
+#   "banana" => "a fruit",
+#   "carrot" => "a vegetable",
+#   "dog" => "an animal",
+#   "elephant" => "an animal"
 # );
-# say %dictionary.pick(*).kv;
+# say %dictionary.pick(*)».kv;
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
@@ -116,7 +116,7 @@ use MONKEY-SEE-NO-EVAL;
 EVAL paste;
 ```
 ```
-# (0 word1 => definition1 1 word2 => definition2 2 word3 => definition3 3 word4 => definition4 4 word5 => definition5)
+# ((apple a fruit) (carrot a vegetable) (banana a fruit) (dog an animal) (elephant an animal))
 ```
 
 ---------

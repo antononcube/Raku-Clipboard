@@ -7,7 +7,7 @@ environment variables:
 - `CLIPBOARD_COPY_COMMAND`
 - `CLIPBOARD_PASTE_COMMAND`
 
-If these env-variables are not specified, then default OS commands are used based on `$*DISTRO`.
+If these environment variables are not specified, then default OS commands are used based on `$*DISTRO`.
 
 **Remark:** The package is (extensively) tested and used on macOS.
 At this point it is not tested on other OS. (Issues and pull requests are welcome!)
