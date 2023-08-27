@@ -3,19 +3,18 @@ use v6.d;
 use lib '.';
 use lib './lib';
 
-use Clipboard;
+use Clipboard :ALL;
 use Test;
 
 ## 1
 my $s1 = "3433";
-copy-to-clipboard($s1);
-is paste().trim, $s1;
+cbcopy($s1);
+is cbpaste().trim, $s1;
 
 ## 2
 my %h2 = g => 3, b => 565;
-copy-to-clipboard(%h2);
-#is paste().trim, %h2.raku;
-is paste().trim, '${:b(565), :g(3)}';
+cbcopy(%h2);
+is cbpaste().trim, '${:b(565), :g(3)}';
 
 ## 3
 my $s3 = q:to/END/;
@@ -28,7 +27,7 @@ my %dictionary = (
 );
 END
 
-copy-to-clipboard($s3);
-is-deeply paste.trim, $s3.trim;
+cbcopy($s3);
+is-deeply cbpaste.trim, $s3.trim;
 
 done-testing;
