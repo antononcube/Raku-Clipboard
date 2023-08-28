@@ -1,7 +1,7 @@
 {
   "name": "Clipboard",
   "description": "Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "perl": "6.d",
   "authors": [
     "Anton Antonov"
@@ -11,7 +11,9 @@
   "build-depends": [],
   "test-depends": [],
   "provides": {
-    "Clipboard": "lib/Clipboard.rakumod"
+    "Clipboard": "lib/Clipboard.rakumod",
+    "Clipboard::Linux": "lib/Clipboard/Linux.rakumod",
+    "Clipboard::macOS": "lib/Clipboard/macOS.rakumod"
   },
   "resources": [],
   "license": "Artistic-2.0",
