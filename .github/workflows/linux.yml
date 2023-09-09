@@ -24,7 +24,7 @@ jobs:
           raku-version: ${{ matrix.raku-version }}
       - name: Install Dependencies
         run: |
-          apt-get install -y xclip
+          sudo apt-get install -y xclip
           zef install --/test --deps-only .
           zef install --/test App::Prove6
       - name: Run Tests
