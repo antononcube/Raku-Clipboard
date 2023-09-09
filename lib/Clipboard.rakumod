@@ -18,6 +18,19 @@ unit module Clipboard;
 #|   - 'xclip -selection clipboard' on Linux.
 proto copy-to-clipboard(|) is export(:DEFAULT, :ALL, :long-names) {*}
 
+do given $*DISTRO {
+    when $_.is-win { 
+    require Clipboard::Windows;
+    }
+    when / macos / { 
+        require Clipboard::macOS;
+    }
+    default {
+        # Assuming it is Linux and it has xclip
+        require Clipboard::Linux;
+    }
+}
+
 multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
 
     my $payload2 = $payload;
