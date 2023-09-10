@@ -1,5 +1,3 @@
-use v6.d;
-
 unit module Clipboard::macOS;
 
 sub init-osx-pbcopy-clipboard is export {

@@ -1,5 +1,3 @@
-use v6.d;
-
 unit module Clipboard::Linux;
 
 sub init-xclip-clipboard is export {
