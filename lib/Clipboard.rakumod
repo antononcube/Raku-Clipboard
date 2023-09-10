@@ -46,7 +46,7 @@ multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbcopy" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip -d Xvfb"
+                            "xclip"
                         }
                     }
         }
