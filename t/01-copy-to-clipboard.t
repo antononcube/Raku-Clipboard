@@ -1,6 +1,8 @@
 use lib '.';
 use lib './lib';
 
+%*ENV<DISPLAY> = "Xvfb";
+
 use Clipboard;
 use Test;
 
