@@ -1,5 +1,3 @@
-use v6.d;
-
 unit module Clipboard;
 
 #===========================================================
@@ -48,7 +46,7 @@ multi sub copy-to-clipboard($payload, :$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbcopy" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip"
+                            "xclip -d Xvfb"
                         }
                     }
         }
@@ -98,7 +96,7 @@ multi sub paste(:$clipboard-command is copy = Whatever) {
                         when $_ ~~ 'macos' { "pbpaste" }
                         default {
                             # Assuming it is Linux and it has xclip
-                            "xclip -o"
+                            "xclip"
                         }
                     }
         }
