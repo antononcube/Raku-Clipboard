@@ -28,6 +28,6 @@ jobs:
           zef install --/test --deps-only .
           zef install --/test App::Prove6
       - name: Run Tests
-        env:
-          DISPLAY: :0
         run: prove6 -l t
+        env:
+          DISPLAY: ':0'
