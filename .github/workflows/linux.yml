@@ -29,5 +29,5 @@ jobs:
           zef install --/test App::Prove6
       - name: Run Tests
         env:
-          DISPLAY: Xvfb
+          DISPLAY: :0
         run: prove6 -l t
