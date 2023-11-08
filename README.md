@@ -1,5 +1,9 @@
 # Clipboard
 
+[![MacOS](https://github.com/antononcube/Raku-Clipboard/actions/workflows/macos.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/macos.yml)
+[![Linux](https://github.com/antononcube/Raku-Clipboard/actions/workflows/linux.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/linux.yml)
+[![Win64](https://github.com/antononcube/Raku-Clipboard/actions/workflows/windows.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/windows.yml)
+
 Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)
 
 The OS commands used to do the copy and paste to- and from the clipboard can be specified with the 
