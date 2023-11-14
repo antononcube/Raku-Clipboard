@@ -1,5 +1,9 @@
 # Clipboard
 
+[![MacOS](https://github.com/antononcube/Raku-Clipboard/actions/workflows/macos.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/macos.yml)
+[![Linux](https://github.com/antononcube/Raku-Clipboard/actions/workflows/linux.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/linux.yml)
+[![Win64](https://github.com/antononcube/Raku-Clipboard/actions/workflows/windows.yml/badge.svg)](https://github.com/antononcube/Raku-Clipboard/actions/workflows/windows.yml)
+
 Raku package for using clipboards of different operating systems. (I.e., copy and paste with any OS.)
 
 The OS commands used to do the copy and paste to- and from the clipboard can be specified with the 
@@ -59,13 +63,13 @@ $promptCodeWriter.chars
 Here we make a chat object with the code writing prompt:
 
 ```perl6
-my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter');
+my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter', conf => 'ChatGPT');
 ```
 
 Here we generate code through the chat object and get the result copied in the clipboard:
 
 ```perl6
-$chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
+$chat.eval('Generate a random dictionary of 5 elements. Return just code.') ==> copy-to-clipboard
 ```
 
 The function `copy-to-clipboard`:

@@ -69,7 +69,7 @@ $promptCodeWriter.chars
 Here we make a chat object with the code writing prompt:
 
 ```perl6
-my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter');
+my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter', conf => 'ChatGPT');
 ```
 ```
 # LLM::Functions::Chat(chat-id = RakuWriter, llm-evaluator.conf.name = chatgpt, messages.elems = 0)
@@ -78,17 +78,17 @@ my $chat = llm-chat($promptCodeWriter, chat-id => 'RakuWriter');
 Here we generate code through the chat object and get the result copied in the clipboard:
 
 ```perl6
-$chat.eval('Generate a random dictionary of 5 elements.') ==> copy-to-clipboard
+$chat.eval('Generate a random dictionary of 5 elements. Return just code.') ==> copy-to-clipboard
 ```
 ```
 # my %dictionary = (
-#   "apple" => "a fruit",
-#   "banana" => "a fruit",
-#   "carrot" => "a vegetable",
-#   "dog" => "an animal",
-#   "elephant" => "an animal"
+#   "apple" => "a type of fruit",
+#   "car"   => "a vehicle",
+#   "house" => "a place to live",
+#   "dog"   => "a pet animal",
+#   "book"  => "a written work"
 # );
-# say %dictionary.pick(*)».kv;
+# %dictionary;
 ```
 
 The function `copy-to-clipboard`:
@@ -104,13 +104,13 @@ paste
 ```
 ```
 # my %dictionary = (
-#   "apple" => "a fruit",
-#   "banana" => "a fruit",
-#   "carrot" => "a vegetable",
-#   "dog" => "an animal",
-#   "elephant" => "an animal"
+#   "apple" => "a type of fruit",
+#   "car"   => "a vehicle",
+#   "house" => "a place to live",
+#   "dog"   => "a pet animal",
+#   "book"  => "a written work"
 # );
-# say %dictionary.pick(*)».kv;
+# %dictionary;
 ```
 
 Here we evaluate clipboard's content (assuming it is Raku code):
@@ -120,7 +120,7 @@ use MONKEY-SEE-NO-EVAL;
 EVAL paste;
 ```
 ```
-# ((apple a fruit) (carrot a vegetable) (banana a fruit) (dog an animal) (elephant an animal))
+# {apple => a type of fruit, book => a written work, car => a vehicle, dog => a pet animal, house => a place to live}
 ```
 
 ---------
