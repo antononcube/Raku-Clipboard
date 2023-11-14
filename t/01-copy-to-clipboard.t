@@ -6,6 +6,11 @@ use lib './lib';
 use Clipboard;
 use Test;
 
+unless $*DISTRO.name ~~ /macos/ {
+    skip-rest "MacOS specific tests";
+    exit;
+}
+
 ## 1
 my $s1 = "3433";
 is-deeply copy-to-clipboard($s1), $s1;
