@@ -6,6 +6,8 @@ use lib './lib';
 use Clipboard;
 use Test;
 
+plan *;
+
 unless $*DISTRO.name ~~ /macos/ {
     skip-rest "MacOS specific tests";
     exit;
