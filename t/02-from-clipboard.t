@@ -8,24 +8,22 @@ use Test;
 
 plan *;
 
-unless $*DISTRO.name ~~ /macos/ {
-    skip-rest "MacOS specific tests";
-    exit;
-}
 
-## 1
-my $s1 = "3433";
-copy-to-clipboard($s1);
-is paste().trim, $s1;
+if $*DISTRO.name ~~ /macos/ {
 
-## 2
-my %h2 = g => 3, b => 565;
-copy-to-clipboard(%h2);
-#is paste().trim, %h2.raku;
-is paste().trim, '${:b(565), :g(3)}';
+    ## 1
+    my $s1 = "3433";
+    copy-to-clipboard($s1);
+    is paste().trim, $s1;
 
-## 3
-my $s3 = q:to/END/;
+    ## 2
+    my %h2 = g => 3, b => 565;
+    copy-to-clipboard(%h2);
+    #is paste().trim, %h2.raku;
+    is paste().trim, '${:b(565), :g(3)}';
+
+    ## 3
+    my $s3 = q:to/END/;
 my %dictionary = (
     cat    => 'a small domesticated carnivorous mammal',
     dog    => 'a domesticated carnivorous mammal',
@@ -35,7 +33,10 @@ my %dictionary = (
 );
 END
 
-copy-to-clipboard($s3);
-is-deeply paste.trim, $s3.trim;
+    copy-to-clipboard($s3);
+    is-deeply paste.trim, $s3.trim;
+} else {
+    skip "Only MacOS specific tests.";
+}
 
 done-testing;
