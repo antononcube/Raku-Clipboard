@@ -32,4 +32,3 @@ jobs:
           raku -I. t/01-copy-to-clipboard.t
           raku -I. t/02-from-clipboard.t
           raku -I. t/03-synonyms.t
-        run: prove6 -l t
